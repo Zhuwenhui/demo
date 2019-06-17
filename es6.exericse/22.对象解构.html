@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        const Tom = {
+            name: 'Tom James',
+            age: 25,
+            familly: {
+                mother: 'Norath James',
+                father: 'Richard Jones',
+                brother: 'Howard Jones',
+            }
+        }
+
+        const { name, age } = Tom;
+
+        // const father ="dard";
+        //多层次解构 如果father已经定义好了 我们就重新rename为fs.
+        const { father: fs, mother: m, brother: b } = Tom.familly;
+        console.log(fs);
+
+        //如果对象没有这个属性 我们可以为这个属性单独定义一个属性 并且赋予默认值  注意:如果这个属性是null,undefined 那么是不会取默认值.
+        const { father, mother, brother, sister = 'have no sister' } = Tom.familly;
+
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+<script>
+    
+    //插入子元素
+    function appendChildDiv(options = {}) {
+        //如果options没有提供参数 那么我们就提供默认参数(回滚值)
+        const { parent = 'body', width = '100px', height = '80px', backgroundColor = 'pink' } = options;
+        const oDiv = document.createElement('div');
+        oDiv.style.width = width;
+        oDiv.style.height = height;
+        oDiv.style.backgroundColor = backgroundColor;
+        document.body.appendChild(oDiv);
+    }
+
+
+</script>
+
+</html>

@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+</body>
+<script>
+
+    //准换成数组
+    var oLi = Array.from(document.querySelectorAll('li'));
+    //更方便的方式 通过扩展运算符
+    var res = [...document.querySelectorAll('li')];
+    // console.log(res);
+    var x = res.map(element => element.textContent.toUpperCase());
+
+    const favorites = {
+        color: ['yellow', 'blue'],
+        fruits: ['banana', 'mongo']
+    };
+
+    const shoppingList = ['milk', 'sweet', ...favorites.fruits];
+    console.log(shoppingList);
+
+    //要做的事情
+    const todos = [ 
+        { id: 1, name: 'Go to store', completed: false },
+        { id: 2, name: 'Match TV', completed: true },
+        { id: 3, name: 'Go to Shopping', completed: false },
+    ];
+
+    const id = 2;
+    //根据ID来检索数据并且删除
+    const todosOfIndex = todos.findIndex(element => element.id === id);
+    //删除数据
+    let reso = [todos.slice(0, todosOfIndex), todos.slice(todosOfIndex + 1 /*越过中间那一条数据*/, todos.length)];
+    console.log(reso);
+
+</script>
+
+</html>

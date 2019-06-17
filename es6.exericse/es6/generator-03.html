@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        
+        function *generator(){
+            const prompt = "hello,what\'s your name?"
+            const anwers = yield prompt;
+
+            return `hello,${anwers}`
+        }
+        const rabbit = generator();
+        console.log(rabbit.next().value);
+        console.log(rabbit.next("章三").value);
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

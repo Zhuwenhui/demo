@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        //无限获取数据
+        var infinity = function* () {
+            let index = 0;
+            while (true) {
+                yield ++index;
+            }
+        };
+
+
+
+
+        var map = function* (fn, genFn) {
+            var genObj = genFn(); //首先生成一个生成器
+            var current = genObj.next(); //获取一个数
+
+            while (!current.done) {
+                yield fn(current.value);
+                current = genObj.next();
+            }
+            //返回值
+            return fn(current.value);
+        }
+
+        var double = function (x) { return 2 * x; }
+        var even = map(double, infinity);
+
+        // console.log(even.next().value);
+        // console.log(even.next().value);
+        // console.log(even.next().value);
+
+
+        //迭代生成器
+        var upto = function (limit) {
+            return function* () {
+                var index = 0;
+                while (index < limit) {
+                    yield index++;
+                }
+                return limit;
+            }
+        }
+
+        var serie = [];
+        for (var current of upto(3)()) {
+            serie.push(current);
+        }
+        // console.log(serie.join(' - '));
+
+        var constant = function* (value) {
+            while (true) {
+                value = (yield value) || value;
+            }
+        }
+
+        let five = constant(5);
+        console.log(five.next().value); // 5
+        console.log(five.next().value); // 5
+        console.log(five.next(6).value); // 6
+        console.log(five.next().value); // 6
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

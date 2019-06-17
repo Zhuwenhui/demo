@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //有一种特殊的语法可以以更舒适的方式处理promises，称为“async / await”。理解和使用起来非常简单。
+
+        async function fetching() {
+            //也可以明确返回一个Promise
+            return Promise.resolve('数据');
+        }
+
+
+        fetching().then(response => {
+            console.log(response);
+        })
+
+        //因此，async确保函数返回一个promise，并在其中包含非promise。很简单吧？但不仅如此。还有另一个关键字，await只能在async函数内部运行，而且非常酷。
+
+        async function store() {
+            let promise = new Promise((reslove, reject) => {
+                setTimeout(() => reslove('done'), 1000);
+            })
+
+            let result = await promise;
+           reslove(result)
+        }
+        
+        store().then(response => {
+            console.log(response);
+        })
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

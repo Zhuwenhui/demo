@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const repos = [
+        { 'name': '🐷', owner: "张三", decription: "描述1", id: 1 },
+        { 'name': '🐱', owner: "李三", decription: "描述2", id: 2 },
+        { 'name': '🐶', owner: "王三", decription: "描述3", id: 3 },
+    ];
+
+    const owners = [
+        { name: '张三', location: '🇯🇵', followers: 123 },
+        { name: '李三', location: '🇺🇸', followers: 124 },
+        { name: '王三', location: '🇨🇳', followers: 125 },
+    ]
+
+
+
+
+
+    const id = 1;
+    async function byIdFetchData(id) {
+        const promise = new Promise((reslove, reject) => {
+            const result = repos.find(element => element.id === id);
+            result ? reslove(result) : reject(new Error('数据没有找到'));
+        })
+
+        const sucess = await promise;
+        async function getByOwners(sucess) {
+            const promise = new Promise((reslove, reject) => {
+                const result = owners.find(element => element.name == sucess.owner);
+                result ? reslove(result) : reject(new Error('数据没有找到'));
+            });
+            return await promise;
+        }
+        return getByOwners(sucess);
+    }
+
+
+
+    byIdFetchData(id).then(function (response) {
+        console.log(response);
+    });
+
+
+    function getRepoById(id) {
+        return new Promise((reslove, reject) => {
+            //处理代码
+            const res = repos.find(element => element.id === id);
+            res ? reslove(res) : reject(new Error('对象不存在'));
+        })
+    }
+
+    function comboundOwner(id) {
+        return new Promise((reslove, reject) => {
+            const res = owners.find(onwer => onwer.name === id.owner);
+            res ? reslove(res) : reject(new Error("没有找到"));
+        })
+    }
+
+    //链式Promise调用
+    // getRepoById(id).then(response => {
+    //     comboundOwner(response).then(params => {
+    //         console.log(params);
+    //     }).catch((error) => {
+    //         console.log(error);
+    //     })
+    // }).catch(error => {
+    //     console.log(error);
+    // })
+
+
+
+
+
+</script>
+
+</html>

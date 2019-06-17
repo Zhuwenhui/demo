@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        const testingTeam = {
+            lead: "QA Lead",
+            tester: "Testing Member",
+            [Symbol.iterator]: function* v() {
+                yield this.lead;
+                yield this.tester;
+            }
+        }
+
+        const DevTeam = {
+            testingTeam,
+            name: "Development Team",
+            size: 5,
+            lead: "Dev Team Lead",
+            pm: "Project Manager",
+            design: "Lead Designer",
+            [Symbol.iterator]: function* () {
+                yield this.lead;
+                yield this.pm;
+                yield this.design;
+                yield* this.testingTeam;
+            }
+        }
+
+        let members = [];
+        for (let member of DevTeam) {
+            members.push(member);
+        }
+        console.log(members);
+
+
+
+        
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

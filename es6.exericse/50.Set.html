@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        
+        
+
+        //不能存储重复元素 
+        const colors = new Set();
+
+        colors.add('red');
+        colors.add('green');
+        colors.add('blue');
+
+        console.log(typeof colors);
+
+        console.log(colors.size);
+        console.log(colors);
+        //删除元素
+        console.log(colors.delete('blue'))
+
+
+        colors.add('白色');
+        // colors.add('blue');
+
+        colors.forEach(element => {
+            console.log(element);
+        })
+
+
+        for (const iterator of colors) {
+            console.log(iterator);
+        }
+
+        //使用扩展运算符转换为数组
+        const store = [...colors];
+
+        //清除所有元素 
+        colors.clear();
+        //可以去重复
+        console.log(new Set([1,2,3,3,3]));
+
+
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

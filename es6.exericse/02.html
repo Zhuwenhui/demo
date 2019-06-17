@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        //创建一个抽象类
+        class Animal {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            eat() {
+                console.log(`${this.name} 正在吃饭`);
+            }
+        }
+
+        //继承 
+        class Snake extends Animal {
+            constructor(name, age, type) {
+                super(name,age);
+                this.type = type;
+            }
+
+            //方法的覆盖 如果子类有同名的方法 就不会去父类查找 ....
+            eat(name){
+                console.log(`${this.name} 覆盖了父亲的方法!${name}`);
+            }
+
+            //创建子类方法
+            move() {
+                console.log(`${this.name} 正在移动`)
+            }
+        }
+    
+
+        var snakes = new Snake("五步蛇",14,"大");
+        snakes.eat("hha");
+        snakes.move();
+
+        
+
+        //创建一个数组
+        class Arrays extends Array{
+            constructor(){
+                super();
+            }
+        }
+
+        console.log(new Arrays());
+
+    
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

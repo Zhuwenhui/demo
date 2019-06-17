@@ -1,0 +1,145 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        const owners = [
+            { name: '张三', location: '🇯🇵', followers: 123 },
+            { name: '李三', location: '🇺🇸', followers: 124 },
+            { name: '王三', location: '🇨🇳', followers: 125 },
+        ]
+
+        //创建一个Generator 
+        function* loop(data) {
+            console.log(data);
+            // 返回了但是调用下一次next方法还是继续执行
+            for (const iterator of owners) {
+                yield iterator; //暂停然后返回数据.直到下一个next()方法在执行
+            }
+        }
+
+        const owner = loop(owners);
+        console.log(owner.next('1'));
+        console.log(owner.next('2'));
+        console.log(owner.next('3'));
+
+
+
+        for (let i = 0; i < 5; i++) {
+            console.log(i);
+        }
+
+        function* generatorForLoop(num) {
+            for (let i = 0; i < num; i++) {
+                yield console.log(i);
+            }
+        }
+
+        const genForLoop = generatorForLoop(5);
+        genForLoop.next();
+
+        function* generator1() { };
+        function* generator2() { };
+        function* generator6() { };
+
+        let generator3 = function* () { };
+        let generator4 = function* () { };
+        let generator5 = function* () { };
+
+        class MyClass {
+            //类生成器
+            *generator() {
+
+            }
+
+            * generators() {
+
+            }
+        }
+
+        const obj = {
+            *generator() { }
+        }
+
+        function withReturn(a) {
+            let b = 5;
+            return a + b;
+            b = 6; // we will never re-assign b
+            return a * b; // and will never return new value
+        }
+
+        withReturn(6); // 11
+        withReturn(6); // 11
+
+
+        function* withYield(a) {
+            let b = 5;
+            yield a + b;  //第一次:执行完毕就返回 
+            b = 6;
+            yield a * b;  //第二次:执行完毕就返回
+        }
+
+        const calcsix = withYield(6);
+        console.log(calcsix.next().value); //11 执行第一个yield语句
+        console.log(calcsix.next().value); //36 执行第二个yield语句
+        //Yield returns a value only once, and the next time you call the same function it will move on to the next yield statement.
+
+        function* generator_test() {
+            yield 5;
+        }
+
+        const gen = generator_test()
+        gen.next(); //返回5
+        gen.next(); //已经执行完毕 没有yield语句了
+
+
+        function* generator_return() {
+            yield 1;
+            return 2;
+            yield 3; //永远不会执行
+        }
+
+        const gens = generator_return();
+        gens.next(); //value 1,
+        gens.next(); //value 2 并且生成器函数已经完毕
+        gens.next(); //gen.next(); // {value: undefined, done: true};
+
+
+
+        function* generator_x(array) {
+            for (const i in array) {
+                yield i;
+                yield yield;
+                yield (yield);
+            }
+        }
+        // 正如您在本示例中所看到的那样，默认情况下yield是未定义的，但如果我们将传递任何值并且只调用yield，它将返回我们传递的值。我们很快就会使用
+        const genx = generator_x([0, 1]);
+        console.log(genx.next()); // {value: "0", done: false}
+        console.log(genx.next('A1')); // {value: undefined, done: false}
+        console.log(genx.next('A2')); // {value: "A", done: false}
+        console.log(genx.next('A3')); // {value: undefined, done: false}
+        console.log(genx.next('A4')); // {value: "A", done: false}
+        console.log(genx.next()); // {value: "1", done: false}
+        console.log(genx.next('B1')); // {value: undefined, done: false}
+        console.log(genx.next('B2')); // {value: "B", done: false}
+        console.log(genx.next('B3')); // {value: undefined, done: false}
+        console.log(genx.next('B4')); // {value: "B", done: false}
+        console.log(genx.next()); // {value: undefined, done: true}
+
+
+        
+        
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

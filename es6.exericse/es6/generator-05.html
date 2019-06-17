@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        //创建一个Generator
+        function* foo(x) {
+            var y = 2 * (yield (x + 1));
+            var z = yield (y / 3);
+            return (x + y + z);
+        }
+        var itcast = foo(100);
+
+        console.log(itcast.next());
+        console.log(itcast.next(12));
+        console.log(itcast.next(13));
+        // console.log(itcast.next(14));
+
+        function* bar(num) {
+            var n = yield (num * 2);
+            var x = yield (n * 3);
+            return (n + x + num);
+        }
+
+        var btcast = bar(100);
+        console.log(btcast.next()); //200 
+        console.log(btcast.next(3)); // 9
+        console.log(btcast.next(4)); // 3+4+100
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

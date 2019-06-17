@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script>
+
+        function ajax(url) {
+            axios.get(url).then(response => {
+                return userGen.next(response.data);
+            });
+        }
+
+
+        //创建一个Generator*函数
+        function* steps() {
+            console.log('fetching users');
+            const users = yield ajax('https://api.github.com/users');
+            console.log(users);
+
+            console.log('fetching first user');
+            const firstUser = yield ajax(`https://api.github.com/users/${users[0].login}`);
+            console.log(firstUser);
+
+            console.log('fetching follwers');
+            const follwers = yield ajax(firstUser.followers_url);
+            console.log(follwers);
+        }
+
+        const userGen = steps();
+        // userGen.next();
+
+
+        function* generator() {
+            const users = yield axios.get('https://api.github.com/users').then(function (response) {
+                return generators.next(response.data);
+            });
+            console.log(users);
+            const firstUser = yield axios.get(`https://api.github.com/users/${users[0].login}`).then(response => {
+                return generators.next(response.data);
+            });
+            console.log(firstUser);
+            const followers = yield axios.get(firstUser.followers_url).then(response=>{
+                return generators.next(response.data);
+            })
+            console.log(followers);
+        };
+
+        const generators = generator();
+        generators.next();
+
+        // function b() {
+        //     const users = axios.get('https://api.github.com/users').then(function (response) {
+        //         console.log(response);
+        //         return response;
+        //     });
+        //     console.log(users);
+        // };
+        // // b();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

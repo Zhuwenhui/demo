@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    const res = new Promise((reslove,reject) => {
+        //请求代码 成功调用reslove,失败调用reject
+        setTimeout(() => {
+            reslove("请求成功....")
+        },2000)
+    })
+
+    //对promise处理方式
+    res.then(function(response){
+        console.log("请求成功!..")
+    }).catch(error => {
+        console.log("请求失败...")
+    })
+
+</script>
+</html>

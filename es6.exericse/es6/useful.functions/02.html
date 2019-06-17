@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
+    <script>
+        //截半数据
+        console.log(_.chunk(['a', 'b', 'c', 'd'], 2));
+        //按照长度截取数据
+        console.log(_.chunk(['a', 'b', 'c', 'd', 'e'], 3));
+
+        var users = [
+            { 'user': 'fred', 'age': 48 },
+            { 'user': 'barney', 'age': 34 },
+            { 'user': 'fred', 'age': 40 },
+            { 'user': 'barney', 'age': 36 }
+        ];
+
+        // Sort by `user` in ascending order and by `age` in descending order.
+        // console.log(_.orderBy(users, ['age'], [ 'aes']));
+        // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+
+        const object1 = {};
+
+        Object.defineProperty(Object.prototype, 'property1', {
+            value: 42,
+            writable: false
+        });
+
+        object1.property1 = 77;
+        // throws an error in strict mode
+
+        console.log(Object.property1);
+        // expected output: 42
+
+        _.each({ name: "x", age: 14 }, function (key, value) {
+            console.log(key, value);
+        })
+
+
+        const array = _.map([{ id: 4 }, { id: 8 }], function (item) {
+            console.log(item);
+        })
+        console.log(array);
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

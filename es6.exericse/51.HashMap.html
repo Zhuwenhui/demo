@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- sass gulp webpack -->
+
+    <script>
+        //任何数据类型都是可以作为Key值
+        var myMap = new Map();
+
+        myMap.set(1,'站三');
+        myMap.set(2,'里斯');
+        myMap.set('码字',3);
+        myMap.set({},'狗子');
+        myMap.set(function(){},'a');
+
+        //获取长度
+        console.log(myMap.size);
+        
+        for(const [key,value] of myMap){
+            console.log(key,value);
+        }
+
+        console.log(myMap.values());
+        console.log(myMap.keys());
+
+        myMap.forEach(function(key,value){
+            console.log('结果'+key,value);
+        });
+
+
+        //数组转换集合
+        var relative = new Map([[1001,'编码'],[1002,'处理']]);
+        console.log(relative.get(1001));
+        //集合转换成数组
+        console.log(Array.from(relative).flat());
+        //判断是否存在
+        console.log(relative.has(1001));
+        //删除数据
+        console.log(relative.delete(1001));
+
+
+    </script>
+
+</body>
+</html>

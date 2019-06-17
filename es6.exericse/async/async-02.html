@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script>
+        //https://codeburst.io/what-are-javascript-generators-and-how-to-use-them-c6f2713fd12e
+        const urls = new Set();
+        const list = [];
+        const store_users = new Map();
+
+        //获取所有用户数据
+        const getGithubUsers = async (url) => {
+            const users = await axios.get(url);
+            users.data.forEach((element, index) => {
+                urls.add(`https://api.github.com/users/${users.data[index].login}`);
+            });
+            
+            const userInfomation = async (urls) => {
+                for (let index = 0; index < urls.size; index++) {
+                    list.push(await axios.get(`https://api.github.com/users/${users.data[index].login}`));
+                }
+            }
+
+            //等待所有请求完成
+            await userInfomation(urls);
+
+            const fetchingLocation = async (list = []) => {
+                const module = {};
+                console.log(list);
+                for (let index = 0; index < list.length; index++) {
+                    //获取位置
+                    module.location = list[index].data.location;
+                    //获取id
+                    module.id = list[index].data.id;
+                    //获取url
+                    module.url = list[index].html_url;
+                    //进行数据存储
+                    store_users.set(list[index].data.id, module);
+                }
+            }
+
+            fetchingLocation(list);
+            console.log(store_users);
+        }
+        getGithubUsers('https://api.github.com/users');
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

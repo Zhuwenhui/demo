@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const name = 'Laravist';
+    const age = 2;
+    const birthday = "2015-05";
+
+    //对象扩展
+    const Laravist = {
+        name,
+        age,
+        birthday
+    }
+
+    //这个在导出什么比较方便
+    // module.exports = {
+    //     name,
+    //     age,
+    // }
+
+
+
+    let id = 0;
+    const userIds = {}
+    //生成10个数据角标
+    for (let i = 0; i < 10; i++) {
+        userIds[[`user_${i}`]] = id + i;
+    }
+    console.log(userIds);
+
+
+    const keys = ['name', 'age', 'birthday'];
+    const values = ['Laravist', 2, '2015-09'];
+
+    //这种方式不好
+    const cast = {
+        [keys.shift()]: values.shift(),
+        [keys.shift()]: values.shift(),
+        [keys.shift()]: values.shift(),
+    }
+
+    //输出对象属性
+    for (const key in userIds) {
+        //通过属性来获取数据值
+        if (userIds.hasOwnProperty(key)) {
+            console.log(userIds[key]);
+        }
+    }
+
+
+</script>
+
+</html>

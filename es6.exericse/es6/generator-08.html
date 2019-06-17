@@ -1,0 +1,126 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script>
+
+        var randStr = function (length, possibleChars) {
+            var text = "";
+            var possible = possibleChars || "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < length; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            return text;
+        };
+
+
+
+
+        var createStyle = function (doc, dom_anchor, style_text) {
+            var class_name = randStr(1, "abcdefghijklmnopqrstuvwxyz") + randStr(7);
+            style_text = "." + class_name + " " + style_text;
+            var style = doc.createElement('style');
+            style.setAttribute('type', 'text/css');
+            style.innerHTML = style_text;
+            dom_anchor.parentNode.insertBefore(style, dom_anchor);
+            return class_name;
+        }
+
+
+        var tables = [];
+
+        const generator = function* () {
+            const users = yield axios.get('https://api.github.com/users').then(function (response) {
+                return itcast.next(response.data);
+            });
+            tables.push(...users);
+            callback();
+        }
+
+        //https://medium.com/javascript-scene/the-hidden-power-of-es6-generators-observable-async-flow-control-cfa4c7f31435
+        //https://codeburst.io/understanding-generators-in-es6-javascript-with-examples-6728834016d5
+        function callback() {
+            // 调用next方法获取一条数据
+            const fetchingOnceData = function* () {
+                var index = 0;
+                while (index <= tables.length) {
+                    yield tables[index++];
+                }
+            }
+
+            //我们可以手动的去拿数据
+            const fetch = fetchingOnceData();
+            const store = [];
+            for (const iterator of fetch) {
+                store.push(iterator);
+            }
+
+            console.log(store);
+        }
+
+
+        var itcast = generator();
+        console.log(itcast.next());
+
+
+
+
+        const interable = new Set([-1, 0, -2, 3])
+        const fiteredArray = [...interable].filter(x => x >= 0);
+        // const fitered = filter(interable, x => x >= 0);
+        // console.log(fitered);
+
+
+
+        const fetchingGithubUsers = async function () {
+            const fetchedUsers = async function () {
+                return fetch('https://api.github.com/users');
+            }
+            const resource = await fetchedUsers();
+
+
+        }
+        fetchingGithubUsers();
+
+
+        //遍历属性对象
+        console.log(Object.values({ name: '章三', age: 14 }));
+        //便利Keys
+        console.log(Object.keys({ name: '章三', age: 14 }));
+
+        console.log(Object.entries({ name: '章三', age: 14 }))
+
+        for (const iterator of Object.entries({ name: '章三', age: 14 })) {
+            console.log(iterator);
+        }
+
+
+        const findLastKey = (obj, fn) => Object.keys(obj).reverse().find(key => fn(obj[key], key, obj));
+
+        console.log(findLastKey({ barney: { age: 36, active: true }, fred: { age: 40, active: false }, pebbles: { age: 1, active: true } },
+            o => o['active']
+        )); // 'pebbles'
+
+        const pickBy = (obj, fn) =>
+            Object.keys(obj)
+                .filter(k => fn(obj[k], k))
+                .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
+
+
+        //域名重定向
+        const httpsRedirect = () => {
+            if (location.protocol !== 'https:') 
+            location.replace('https://' + location.href.split('//')[1]);
+        };
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

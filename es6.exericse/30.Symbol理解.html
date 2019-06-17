@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+
+        //Symbol新种数据类型
+        const peter = Symbol("peter");
+        const result = Symbol("student");
+
+        const classRom = {
+            [Symbol('lily')]: { location: '🇯🇵' },
+            [Symbol('nina')]: { location: '🇺🇸' },
+            [Symbol('jelly')]: { location: '🇰🇷' },
+        }
+
+
+
+        //迭代Symbol
+        const sys = Object.getOwnPropertySymbols(classRom).map(sym => classRom[sym]);
+        console.log(sys[0].location);
+
+
+        const iterableObject = {}
+
+        //生成迭代器
+        iterableObject[Symbol.iterator] = function* () { // (A)
+            yield 1;
+            yield 2;
+            yield 3;
+        }
+
+        for (const iterator of iterableObject) {
+            // console.log(iterator);
+        }
+
+        // console.log([...iterableObject]);
+
+
+        const owners = [
+            { name: '张三', location: '🇯🇵', followers: 123 },
+            { name: '李三', location: '🇺🇸', followers: 124 },
+            { name: '王三', location: '🇨🇳', followers: 125 },
+        ]
+
+        const repos = [
+            { name: '🐷', owner: "狗子", decription: "描述1", id: 1 },
+            { name: '🐱', owner: "麻子", decription: "描述2", id: 2 },
+            { name: '🐶', owner: "蠢子", decription: "描述3", id: 3 },
+        ];
+
+
+        const collection = [];
+        repos.forEach(element => {
+            element[Symbol.iterator] = function* () {
+                yield this.owner;
+                yield this.decription;
+                yield this.id;
+            }
+        })
+
+
+        owners.forEach((element, index) => {
+            element.repos = repos[index];
+            element[Symbol.iterator] = function* () {
+                yield this.name;
+                yield this.location;
+                yield this.followers;
+                yield* this.repos;
+            };
+
+            function handler(element) {
+                for (const iterator of element) {
+                    collection.push(iterator);
+                }
+            }
+            handler(element);
+        })
+
+        console.log(collection);
+
+
+    </script>
+</body>
+
+</html>

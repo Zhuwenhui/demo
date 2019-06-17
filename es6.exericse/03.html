@@ -1,0 +1,191 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        //先熟透前端技术栈 在考虑后面 一步一步脚印来
+        var fruits = ['red', 'Banana'];
+        //获取数组长度
+        console.log(fruits.length)
+        //根据角标获取数组
+        console.log(fruits[0]) //获取零个元素
+        //获取最后一个元素
+        console.log(fruits[fruits.length - 1]); //获取最后一个元素
+        //遍历数组的方式
+        fruits.forEach(function (item, index, array) {
+            console.log(`元素:${item} 索引:${index} 数组列表:${array}`)
+        });
+
+        //给数组追加一个元素
+        fruits.push("蓝色");
+        //移除末尾元素并且返回元素
+        console.log(fruits.pop())
+        //从前面移除一个元素
+        console.log(fruits.shift());
+        //添加一个元素到数组开头
+        fruits.unshift('绿色');
+        //根据元素获取数组角标
+        console.log(fruits.indexOf('绿色') !== -1);
+        //先查找元素 从那个地方开始{右边的元素保留,左边的元素丢弃}
+        console.log(fruits.slice(fruits.indexOf("绿色", 1)));
+        //如果不进行任何操作就是拷贝数组
+        console.log(fruits.slice());
+
+
+        //返回一个数组
+        console.log(Array.from('foo'));
+        //第二个参数 如果指定了该参数，新数组中的每个元素会执行该回调函数 返回一个新的数组
+        console.log(Array.from([1, 2, 3, 4], (element) => element + element));
+        //判断是否是一个数组
+        console.log(Array.isArray(fruits));
+        //Array.of() 方法创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型
+        console.log(Array.of(1, 2, 3));
+
+
+
+        var alpha = ['a', 'b', 'c'];
+        var numberic = [1, 2, 3];
+        //把两个数组连接到一起
+        alpha.concat(numberic);
+        console.log(alpha);
+
+
+        var stores = ['生活', '努力', '加油'];
+        // 1.迭代的元素 角标 数组  { 返回满足的条件 }
+        const result = Array.of(1, 2, 3, 4).find((element, index, array) => {
+            return element > 3;
+        })
+        console.log(result);
+
+
+        const posts = [
+            {
+                "code": "DFKJdodfi",
+                "caption": "Dunno Dog'",
+                "likes": 42,
+                "id": "328943249723",
+                "display_src": "https://i.ytimg.com/vi/uFTcXaTezyA/hqdefault.jpg"
+            },
+            {
+                "code": "BAIDfidslkaf",
+                "caption": "Doggin' Around",
+                "likes": 40,
+                "id": "2190828475324",
+                "display_src": "https://i.ytimg.com/vi/uFTcXaTezyA/hqdefault.jpg"
+            },
+            {
+                "code": "BAAJqdslkaf",
+                "caption": "Strait Doggin'",
+                "likes": 50,
+                "id": "2190823079324",
+                "display_src": "https://i.ytimg.com/vi/uFTcXaTezyA/hqdefault.jpg"
+            }
+        ]
+
+        //输出每个元素
+        const post = posts.find(post => {
+            console.log(post);
+        });
+
+        //我们要查询Code等于BAAJqdslkaf 如果有就给我返回数据
+        const codes = posts.find(post => post.code === 'BAAJqdslkaf');
+        console.log(`返回的数据${codes}`);
+
+        //返回在数组中索引位置
+        const postsOfIndex = posts.findIndex(post => post.code === 'BAAJqdslkaf');
+        console.log(postsOfIndex);
+
+        const ages = [32, 18, 19, 18];
+        //必须满足大于18 只需要满足一个条件
+        console.log(ages.some(age => age >= 18))
+        //数组里面的元素都必须满足
+        console.log(ages.every(age => age >= 18));
+
+        //对于多层嵌套数组嵌套 扁平方法
+        const dimension = [1, 2, [3, 4, [5, 6]]];
+        //扁平化数组
+        const flats = dimension.flat(dimension).flat().flat();
+        console.log(flats);
+
+
+        const inventory = [
+            { name: 'cherries', quantity: 5 },
+            { name: 'apples', quantity: 2 },
+            { name: 'bananas', quantity: 0 },
+
+        ];
+
+        //查找水果为bananas
+        const bananas = inventory.find(fruit => fruit.name === 'bananas');
+        console.log(bananas);
+
+        //返回水果为bananas索引
+        const bananasOfIndex = inventory.findIndex(fruit => fruit.name === 'bananas');
+        console.log(bananasOfIndex);
+
+        //只要库存中数量大于0 就返回真
+        const isEnough = inventory.some(fruit => fruit.quantity > 0);
+        console.log(isEnough);
+
+        //库存里面所有数量都必须大于2
+        const conditionFull = inventory.every(fruit => fruit.quantity > 2);
+        console.log(conditionFull);
+
+        //对库存里面的数量进行排序
+        // inventory.sort((a, b) => a.quantity - b.quantity);
+        console.log(inventory);
+        inventory.sort((a, b) => {
+            if (a.quantity > b.quantity) {
+                return 1;  //如果第一个元素的值减去第二个元素的值 如果是正数 那么就是大
+            } else {
+                return -1; //  否则就是小
+            }
+            return 0; //当元素相等
+        });
+
+
+        let numbers = [4, 2, 5, 1, 3];
+        numbers.sort((a, b) => {
+            console.log(`${a}:${b}`);
+            return a - b;
+        });
+
+        console.log(numbers);
+        //对库存里面的数据进行大写转换
+        var named = inventory.map((element, index) => {
+            return { index: `索引角标:${index}`, element: `返回的元素  ${element.name.toUpperCase()}` };
+        });
+        console.log(named);
+
+        // 判断库存包含某个值 从那个位置开始搜索
+        console.log(numbers.includes(4), 0);
+        var elements = ['fire', 'wind', 'Rain'];
+        //将数组转换字符串
+        console.log(elements.join());
+        //这样转换出来的字符串没有逗号
+        console.log(elements.join(''));
+        //根据制定字符串进行拼接输出
+        console.log(elements.join('-'));
+        //累计值 reduce(Accumulator(累计器),currentValue(当前值),currentIndex(当前索引),sourceArray(数组源))
+        const res = numbers.reduce((total, currentValue) => {
+            return total + currentValue;
+        })
+        console.log(res);
+        //简介的写法
+        console.log([0, 1, 2, 3, 4].reduce((prev, curr) => prev + curr));
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

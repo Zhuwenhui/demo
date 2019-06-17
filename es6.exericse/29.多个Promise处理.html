@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    const userPromise = new Promise((reslove, reject) => {
+        setTimeout(() => {
+            reslove(['🇺🇸', '🇯🇵', '🇰🇷', '🇨🇳'])
+        }, 2000);
+    })
+
+    const moivePromise = new Promise((reslove, reject) => {
+        setTimeout(() => {
+            reslove(['🇮🇳', '🇷🇺']);
+        })
+    })
+
+    //处理多个Promise
+    Promise.all([userPromise, moivePromise]).then((response) => {
+        //什么类型就解构什么类型
+        const [user, moive] = response;
+        console.log(user);
+        console.log(moive);
+    }).catch(error => {
+        console.log(error);
+    })
+
+    // Promise.race();
+    
+    // Promise.
+
+</script>
+
+</html>

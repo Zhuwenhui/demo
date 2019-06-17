@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    
+    const fruit = ['apple', 'bananas', 'pear'];
+    const newFruit = ['orange', 'mongo'];
+
+    //数组合并
+    fruit.push.apply(fruit, newFruit);
+    console.log(fruit);
+    fruit.push(...newFruit); //追加到fruit数组中
+
+    //扩展运算符传递到时间集合中
+    const datefField = [2017, 5, 7];
+    const date = new Date(...datefField);
+    console.log(date);
+
+</script>
+
+</html>

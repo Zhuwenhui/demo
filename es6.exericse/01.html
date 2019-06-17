@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+
+
+        
+
+        let info = "info";
+        //创建一个用户
+        class User{
+            //定义构造函数
+            constructor(name,email){
+                this.name = name;
+                this.email = email;
+            }
+            //通过属性来定义一个方法
+            [info](){
+
+            }
+            //显示信息
+            info(){
+                console.log(`Hi, I'am ${this.name} , my email is ${this.email} `);
+            }
+
+            //声明一个静态函数
+            static description(){
+                console.log("我是一个静态函数")
+            }
+            //实例属性:设置一个数据值
+            set github(value){
+                this.githubName = value;
+            }
+            //实例属性:获取一个数据值
+            get github(){
+                return `https://github.com/${this.githubName}`;
+            }
+        }
+
+
+        //创建对象
+        const itcast = new User("章三","oreo.huhus@gmail.com");
+        const julley = new User("王五","892866620@qq.com");
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

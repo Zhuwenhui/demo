@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        //多个参数组成数组
+        function sum(...sum) {
+            return sum.reduce((prev, curr) => prev + curr);
+        }
+        console.log(sum(1, 2, 3));
+
+        function covertCurrency(rate, ...amounts) {
+            return amounts.map((element) => rate * element);
+        }
+
+        console.log(covertCurrency(0.85, 1, 2, 3, 4, 5));
+
+            
+        players = ['Jelly', 1, 2, 3, 4, 5, 6, 7, 8];
+        //变量的解构 score 可以解构后面剩余的参数
+        const [name, id, ...scores] = players;
+        //输出的内容
+        console.log(`${name} ${id} ${scores}`);
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

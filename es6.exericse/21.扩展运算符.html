@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        const youngers = ['Georeg', 'John', 'Thomas'];
+        const olders = ['James', 'Adrew', 'Martin'];
+        //把olders追加到youngers数组里面
+        const res = youngers.concat(older);
+
+        //假设我们想在中间追加一个元素 那么就得这么来处理
+        let members = [];
+        members.concat(youngers);
+        //先追加一个元素
+        members.push('Mary');
+        members = members.concat(olders);
+        console.log(members);
+
+
+        //字符串转换成数组
+        console.log([..."larivist"]);
+
+        //使用扩展运算符 我们要扩展元素也很方便
+        const result = [...youngers, 'Mary',...olders];
+        const copyDeep = result;
+        copyDeep[0] = '捷克'; //他们是引用用一份数组  那么result也被修改了
+        console.log(result);
+
+        //解决办法使用扩展运算符 拷贝一份值 
+        const currentMembers = [...numbers];
+        console.log(currentMembers);
+
+
+        
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

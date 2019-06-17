@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .dark-black {
+            background: black;
+        }
+        .red{
+            background-color:red;
+        }
+    </style>
+    <script>
+
+        window.onload = function () {
+            var Oli = document.querySelectorAll(".dark");
+            var oBtn = document.querySelector("input[type='button']");
+            var className = 'dark-black';
+
+            function * addClassToEach(elements, className) {
+                for (const iterator of [...Oli]) {
+                    yield iterator.classList.add('dark-black');
+                }
+            }
+
+            const addClassToStrings = addClassToEach(Oli,className);
+            oBtn.addEventListener('click', (events) => {
+                //判断是否执行完毕
+                if(addClassToStrings.next().done){
+                    // 最后按钮的颜色
+                    events.target.classList.add('red');
+                }
+            })
+        }
+
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li class="dark">1</li>
+        <li class="dark">2</li>
+        <li class="dark">3</li>
+    </ul>
+    <input type="button" value="点击我">
+</body>
+
+</html>
